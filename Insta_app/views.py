@@ -4,7 +4,7 @@ from django.http import HttpResponse,Http404
 
 # Create your views here.
 def index(request):
-  return HttpResponse('Instagram!')
+  return render (request,'index.html')
 
 def user_profile(request):  
   current_user = request.user
