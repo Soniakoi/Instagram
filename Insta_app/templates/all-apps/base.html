@@ -1,3 +1,4 @@
+{%extends 'all-apps/base.html'%}
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,6 +9,9 @@
     {% else %}
     <title>Instagram</title>
     {% endif %}
+    {% block content %}
+{{block.super}}
+{% endblock %}
   </head>
   <body>
   </body>
