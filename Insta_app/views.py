@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse,Http404
-
-
 # Create your views here.
 def index(request):
   return render (request,'index.html')
@@ -12,3 +10,7 @@ def user_profile(request):
   posts = Image.objects.filter(user_id=current_user.id)
 
   return render(request,'insta.html',{"profile_pic":profiles,"posts":posts})
+
+
+# @login_required(login_url='/accounts/login/')
+# def article(request, article_id):  
