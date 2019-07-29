@@ -1,25 +1,29 @@
-{%extends 'all-apps/base.html'%} 
+{% extends 'base.html' %}
 {% block content %}
-<div class="container">
+  <div class="container-fluid">
+    <div class="row search-page">
+      <div class="col-md-2"></div>
+      {% if founds %}
+        
+        <div class="col-md-8">
+        <h2> Found {{founds|length}} results of searched {{message}}. </h2>
+      {% else %}
+        <h2> Sorry, couldn't find user of that match. <br> Or <br> {{message}}. </h2>
+       </div>
 
-  <div class="row">
-    {% if articles%}
-      <h2>Found {{ articles|length }} of searched term {{message}}</h2>
-    {% else %}
-      <h2> Found 0 articles for the search term {{message}}</h2>
-    {% endif %}
-
+      {% endif %}
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      {% if founds %}
+        {% for user in founds %}
+        <div class="col-sm-6 col-md-3">
+          <img src="{{user.profile_pic.url}}" alt="User Profile" class="img-fluid">
+          <p>{{user.bio}}</p>
+          <p>{{user.image}}</p>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
   </div>
-
-  <div class="row">
-
-  {% if articles %}
-    {% for article in articles %}
-      <div class="col-sm-6 col-md-3">
-          <h1>{{article.title}}</h1>
-      </div>
-    {% endfor %}
-  {% endif %}
-  </div>
-</div>
 {% endblock %}
