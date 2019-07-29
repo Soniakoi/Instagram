@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import Profile,Image,Comments
-# from .forms import NewImageForm,NewProfileForm,NewCommentForm
+from .forms import NewProfileForm,NewCommentForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 def index(request):
   return render (request,'index.html')
