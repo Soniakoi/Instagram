@@ -17,7 +17,7 @@ from decouple import config,Csv
 
 MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=False)
 # development
 if config('MODE')=="dev":
    DATABASES = {
