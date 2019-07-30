@@ -29,9 +29,9 @@ class Image(models.Model):
   image = models.ImageField(upload_to='image/')
   name = models.CharField(max_length=40)
   caption = HTMLField()
-  user = models.ForeignKey(User,on_delete=models.CASCADE)
+  Profile = models.ForeignKey(User,on_delete=models.CASCADE)
   likes = models.IntegerField(default=0)
-  caption = HTMLField()
+  
     
   def __str__(self):
     return self.name

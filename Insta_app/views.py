@@ -1,20 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import Profile,Image,Comments
 from .forms import NewProfileForm,NewCommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 # Create your views here.
+@login_required(login_url='/accounts/login')
 def index(request):
-  return render (request,'index.html')
+  images = Image.objects.all()
+  return render (request,'index.html',{'images':images})
 
 
 def user_profile(request):
   current_user = request.user
   profiles = Profile.objects.filter(user_id=current_user.id)[0:1]
-  posts = Image.objects.filter(user_id=current_user.id)  
+  posts = Image.objects.filter(id=current_user.id)  
 
-  return render(request,'insta.html',{"profile_pic":profiles,"posts":posts})
+  return render(request,'insta.html',{"profile":profiles,"posts":posts})
 
 def feeds(request):  
   comments= Comments.objects.all()
@@ -47,7 +49,7 @@ def comments(request):
 
   else:
     form = NewCommentForm()
-  return render(request,'comments.html',{"form":form})
+  return render(request,'comment.html',{"form":form})
 
 
 @login_required(login_url='/accounts/login')
@@ -73,9 +75,9 @@ def profile(request):
     if form.is_valid():
       profile = form.save(commit=False)
       profile.user = current_user
-      profile_pic = form.cleaned_data['profile_pic']
-      bio = form.cleaned_data['bio']
-      Profile.objects.filter(user=current_user).update(bio=bio,profile_pic=profile_pic)
+      profile_pic = form.cleaned_data['Profile']
+      # bio = form.cleaned_data['bio']
+      Profile.objects.filter(user=current_user).update()
       profile.save()
     return redirect('userProfile')
 
