@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import django_heroku
 import dj_database_url
-from decouple import config,Csv
+from decouple import config,
 
 MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
@@ -120,7 +120,7 @@ WSGI_APPLICATION = 'insta_project.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'insta',
+#         'NAME': 'insta
 #         'USER': 'sonia',
 #     'PASSWORD':'Sonia99',
 #     }
